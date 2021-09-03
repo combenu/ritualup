@@ -1,0 +1,61 @@
+# Uncomment the next line to define a global platform for your project
+platform :ios, '9.0'
+
+target 'RitualUp' do
+  # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
+  # use_frameworks!
+
+  # Pods for RitualUp
+  pod 'Firebase/Core'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Database'
+  pod 'Firebase/Storage'
+  pod 'Firebase/Messaging'
+  pod 'Firebase/Firestore'
+  pod 'GoogleSignIn'
+
+  pod 'DoubleConversion', :podspec => '../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec'
+  pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
+  pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
+
+  # See http://facebook.github.io/react-native/docs/integration-with-existing-apps.html#configuring-cocoapods-dependencies
+  pod 'yoga', path: "../node_modules/react-native/ReactCommon/yoga/yoga.podspec"
+  pod 'React', path: "../node_modules/react-native", subspecs: [
+    'Core',
+    'CxxBridge',
+    'DevSupport',
+    'RCTActionSheet',
+    'RCTAnimation',
+    'RCTGeolocation',
+    'RCTImage',
+    'RCTLinkingIOS',
+    'RCTNetwork',
+    'RCTSettings',
+    'RCTText',
+    'RCTVibration',
+    'RCTWebSocket',
+  ]
+
+  pod 'lottie-ios', :path => '../node_modules/lottie-ios'
+
+  pod 'lottie-react-native', :path => '../node_modules/lottie-react-native'
+
+  pod 'RNGoogleSignin', :path => '../node_modules/react-native-google-signin'
+
+  pod 'react-native-fbsdk', :path => '../node_modules/react-native-fbsdk'
+
+  pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-community/async-storage'
+
+end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    if target.name == "React"
+      target.remove_from_project
+    end
+    
+    if target.name == "yoga"
+      target.remove_from_project
+    end
+  end
+end
